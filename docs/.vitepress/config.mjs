@@ -18,7 +18,7 @@ export default defineConfig({
       { icon: 'discord', link: 'https://discord.gg/Mk3w6Tb' }
     ],
     footer: {
-      copyright: '© 2020 - 2025 Impostor'
+      copyright: '© 2023 - 2025 By QingFeng'
     },
     search: {
       provider: 'local'
