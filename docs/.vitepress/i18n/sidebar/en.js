@@ -7,6 +7,7 @@ export const enSidebarConfig = defineConfig([
     items: [
       { text: 'Getting Started', link: 'GettingStarted' },
       { text: 'Server configuration', link: 'ServerConfiguration' },
+      { text: 'Building from source', link: 'BuildingFromSource' }
     ]
   }
 ]);
