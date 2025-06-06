@@ -7,11 +7,15 @@ Unfortunately Impostor doesn't handle SSL certificates, so you need to set up a 
 
 ## Use a reverse proxy
 
-A reverse proxy allows you to forward HTTP requests from users to multiple services. If you already have one, you should configure it to add Impostor. 
+A reverse proxy allows you to forward HTTP requests from users to multiple services.\
+If you already have one, you should configure it to add Impostor. 
 
-If you have never set up a reverse proxy before, we recommend you to set up [Caddy](https://caddyserver.com/). It is easy to set up and comes with support for requesting SSL certificates out of the box.
+If you have never set up a reverse proxy before, we recommend you to set up [Caddy](https://caddyserver.com/).\
+It is easy to set up and comes with support for requesting SSL certificates out of the box.
 
-To prevent people from connecting directly to Impostor, we recommend changing the `ListenIp` in the `HttpServer` section to `127.0.0.1`. This makes sure people can't connect to your HTTP server other than via your reverse proxy. Keep the `ListenIp` in the `Server` section at `0.0.0.0` though, running the normal game traffic through a proxy is not supported.
+To prevent people from connecting directly to Impostor, we recommend changing the `ListenIp` in the `HttpServer` section to `127.0.0.1`.\
+This makes sure people can't connect to your HTTP server other than via your reverse proxy.\
+Keep the `ListenIp` in the `Server` section at `0.0.0.0` though, running the normal game traffic through a proxy is not supported.
 
 ### Caddy
 
@@ -30,7 +34,7 @@ If this works, you should set up [Caddy to run in the background](https://caddys
 
 Nginx is an alternative to Caddy that is a bit harder to set up. If you already use Nginx, you can use our snippet to add Impostor:
 
-<details><summary>Nginx configuration</summary>
+:::details Nginx configuration
 
 ```nginx
 server {
@@ -58,15 +62,15 @@ server {
 }
 ```
 
-</details>
+:::
 
 ## Stop exposing Impostor's HTTP server to the internet directly
 
-To only allow connections to Impostor's HTTP servers via the reverse proxy, we recommend to set the ListenIp of the HTTP server to 127.0.0.1:
+To only allow connections to Impostor's HTTP servers via the reverse proxy, we recommend to set the ListenIp of the HTTP server to `127.0.0.1`:
 
 ```json
 {
- // NOTE: merge this snippet into the rest of your configuration
+ // merge this snippet into the rest of your configuration // [!code error]
  "HttpServer": {
    "ListenIp": "127.0.0.1"
  }

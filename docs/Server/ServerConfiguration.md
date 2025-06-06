@@ -11,9 +11,10 @@
 | **ListenIp**   | `0.0.0.0`   | The network interface to listen on. If you do not know what to put here, use `0.0.0.0`. Since 1.2.2 it is also possible to use hostnames instead of IPv4 addresses, these must resolve to a valid IPv4 address.                                                                                                                                                                                        |
 | **ListenPort** | `22023`     | The listen port of the server, usually `22023`. For port forwarding purposes: this is an UDP port                                                                                                                                                                                                                                                                                                                                                       |
 
-### HttpServer
+### HTTP Server
 
-Impostor has an Http Server that is used by recent versions of Among Us to connect to. See [the Http Server page](Http-server.md) for more details on how to set this up.
+Impostor has an Http Server that is used by recent versions of Among Us to connect to.\
+See [the HTTP Server page](HTTPServer) for more details on how to set this up.
 
 | Key            | Default   | Description                                                                                                                                                                |
 |----------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -23,7 +24,8 @@ Impostor has an Http Server that is used by recent versions of Among Us to conne
 
 ### AntiCheat
 
-Impostor has an Anticheat that makes it possible to kick cheaters from games automatically. Note that the anticheat is tuned on the vanilla version of the game, so client-side modifications could trigger the Anticheat if you're playing with them.
+Impostor has an Anticheat that makes it possible to kick cheaters from games automatically.\
+Note that the anticheat is tuned on the vanilla version of the game, so client-side modifications could trigger the Anticheat if you're playing with them.
 
 | Key                           | Default   | Value                                                                                                                                                                                                               |
 |-------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -42,7 +44,9 @@ Impostor has an Anticheat that makes it possible to kick cheaters from games aut
 
 ### Compatibility
 
-Impostor has some compatibility options which allow some extra flexibility but may not work properly. Enabling any of these options is not recommended. When contacting support, please mention which of these options are enabled.
+Impostor has some compatibility options which allow some extra flexibility but may not work properly.\
+Enabling any of these options is not recommended.\
+When contacting support, please mention which of these options are enabled.
 
 | Key                         | Default | Value                                                                                                                                                                                                                                                            |
 |-----------------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -52,7 +56,8 @@ Impostor has some compatibility options which allow some extra flexibility but m
 
 ### Debug
 
-The Debug configuration is used to enable the game recorder. This is mostly useful when developing Impostor.
+The Debug configuration is used to enable the game recorder.\
+This is mostly useful when developing Impostor.
 
 | Key                     | Default | Value                                        |
 | ----------------------- | ------- | -------------------------------------------- |
@@ -61,7 +66,8 @@ The Debug configuration is used to enable the game recorder. This is mostly usef
 
 ### Serilog (Logging)
 
-Impostor's log framework, Serilog, can be configured in the config file. You can change its default log level and you can add additional sinks.
+Impostor's log framework, Serilog, can be configured in the config file.\
+You can change its default log level and you can add additional sinks.
 
 | Key              | Default       | Value                                                                                                                                                                                                                          |
 | ---------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -102,7 +108,11 @@ The `config.json` file contains all the configurable options.
 
 ### Environment variables
 
-If you're unable to edit the `config.json` file, you can instead set Environment variables to configure Impostor. The general pattern for each variable is `IMPOSTOR_SectionName__VariableName`. For example, to disable the anticheat, you can set the environment variable `IMPOSTOR_AntiCheat__Enabled=false`. Here are some more examples:
+If you're unable to edit the `config.json` file, you can instead set Environment variables to configure Impostor.\
+The general pattern for each variable is `IMPOSTOR_SectionName__VariableName`.\
+For example, to disable the anticheat, you can set the environment variable `IMPOSTOR_AntiCheat__Enabled=false`.
+
+Here are some more examples:
 
 ```
 IMPOSTOR_Server__PublicIp=127.0.0.1

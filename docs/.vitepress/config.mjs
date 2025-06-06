@@ -13,6 +13,9 @@ export default defineConfig({
   },
   themeConfig: {
     logo: 'https://avatars.githubusercontent.com/u/73118603?s=200&v=4',
+    outline: {
+      level: [2, 4]
+    },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/Impostor/Impostor' },
       { icon: 'discord', link: 'https://discord.gg/Mk3w6Tb' }

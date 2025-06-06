@@ -1,6 +1,7 @@
 # Building from source
 
-The solution contains the Impostor server and its dependencies, like Hazel and the plugin API. The server is built using [.NET 8](https://dotnet.microsoft.com/download/dotnet/8.0).
+The solution contains the Impostor server and its dependencies, like Hazel and the plugin API.\
+The server is built using [.NET 8](https://dotnet.microsoft.com/download/dotnet/8.0).
 
 ## Cloning Impostor
 
@@ -26,4 +27,4 @@ dotnet build
 dotnet publish -c Release -r linux-x64 -p:PublishSingleFile=true
 ```
 
-To setup the server, please look at [Running the server](Running-the-server.md).
+To setup the server, please look at [Getting Started](GettingStarted).

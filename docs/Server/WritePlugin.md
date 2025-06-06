@@ -2,24 +2,7 @@
 
 Impostor has support for plugins. This document will help you to setup a development environment for writing a plugin.
 
-- [Writing a plugin](#writing-a-plugin)
-  - [1. Install .NET SDK](#1-install-net-sdk)
-  - [2. Create a C# project](#2-create-a-c-project)
-  - [3. Add the Impostor.Api library](#3-add-the-impostorapi-library)
-    - [Quick](#quick)
-    - [Visual Studio](#visual-studio)
-    - [Dotnet CLI](#dotnet-cli)
-  - [4. The plugin class](#4-the-plugin-class)
-  - [5. Adding an event listener](#5-adding-an-event-listener)
-  - [6. Registering the event listener](#6-registering-the-event-listener)
-  - [7. Build and run your plugin](#7-build-and-run-your-plugin)
-  - [8. Extra](#8-extra)
-    - [Event listeners](#event-listeners)
-    - [Dependency injection](#dependency-injection)
-    - [Server configuration](#server-configuration)
-    - [Using other libraries](#using-other-libraries)
-    - [Impostor versions](#impostor-versions)
-  - [9. Missing/invalid data or want more functions?](#9-missinginvalid-data-or-want-more-functions)
+[[toc]]
 
 ## 1. Install .NET SDK
 
@@ -29,11 +12,14 @@ https://dotnet.microsoft.com/download
 
 ## 2. Create a C# project
 
-The first step is creating a new C# project, it must be a **Class Library (.NET Standard)**. The target framework can be any of those compatible with .NET 8, but we recommend sticking with **.NET 8.0**.
+The first step is creating a new C# project, it must be a **Class Library (.NET Standard)**.\
+The target framework can be any of those compatible with .NET 8, but we recommend sticking with **.NET 8.0**.
 
-For more information about compatibility, see https://docs.microsoft.com/en-us/dotnet/standard/net-standard.
+For more information about compatibility, see [Microsoft Learn](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
 
-When the project has been created, you should have `Class.cs` and `Project.csproj` files. Your `Project.csproj` should look something like this.
+When the project has been created, you should have `Class.cs` and `Project.csproj` files.
+
+Your `Project.csproj` should look something like this.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -67,7 +53,10 @@ Make sure to get a prerelease if you are writing a plugin for a dev release of t
 
 ## 4. The plugin class
 
-Now the `Impostor.Api` is installed, you need to create a class for your plugin. A plugin **must** contain exactly one. See the code below for an example.
+Now the `Impostor.Api` is installed, you need to create a class for your plugin.\
+A plugin **must** contain exactly one.
+
+See the code below for an example.
 
 ```csharp
 using System.Threading.Tasks;
@@ -136,9 +125,11 @@ namespace Impostor.Plugins.Example
 
 ## 5. Adding an event listener
 
-Currently you should have a plugin that loads and does nothing. In order to get some actual functionality, you need to add an event listener.
+Currently you should have a plugin that loads and does nothing.\
+In order to get some actual functionality, you need to add an event listener.
 
-Create a new class called `GameEventListener`. Example code:
+Create a new class called `GameEventListener`.\
+Example code:
 
 ```csharp
 using Impostor.Api.Events;
@@ -206,7 +197,8 @@ namespace Impostor.Plugins.Example.Handlers
 
 ## 6. Registering the event listener
 
-The last step to get your plugin working is to register the event listener, so the server knows about it. Go back to your plugin class and modify it as below.
+The last step to get your plugin working is to register the event listener, so the server knows about it.\
+Go back to your plugin class and modify it as below.
 
 ```csharp
 using System;
@@ -268,7 +260,8 @@ Now your plugin is ready to be tested.
 4. In this directory, you should find your plugin named `Project.dll`.
 5. Copy the `Project.dll` to the `plugins` directory in your Impostor server directory.
 6. (Re)start your Impostor server.
-7. Open Among Us, create a game and send a chat message. In the console you should see your plugin being loaded and the messages from the example.
+7. Open Among Us, create a game and send a chat message.\
+  In the console you should see your plugin being loaded and the messages from the example.
 
 ## 8. Extra
 
@@ -278,7 +271,8 @@ Some extra information that might be useful for those developing plugins.
 
 - You can have multiple event listener on the same event.
 - An event listener can be given a priority `[EventListener(EventPriority.Normal)]` and is called in order.
-- It is not recommended to block for a long time inside `EventListener` because the events are called from inside the packet handlers. Blocking too long causes the client to time out. You should create a new `Task` for operations that will take a lot of time. 
+- It is not recommended to block for a long time inside `EventListener` because the events are called from inside the packet handlers. Blocking too long causes the client to time out.\
+  You should create a new `Task` for operations that will take a lot of time. 
 
 ### Dependency injection
 
@@ -287,11 +281,13 @@ Some extra information that might be useful for those developing plugins.
   - `IEventManager`
   - `IClientManager`
   - `IOptions<ServerConfig>`
-- You can add your own classes and `EventListener` implementation to the `IServiceProvider` by creating a new class and implementing `IPluginStartup`. Make sure to register them as a singleton `services.AddSingleton<IEventListener, GameEventListener>();`.
+- You can add your own classes and `EventListener` implementation to the `IServiceProvider` by creating a new class and implementing `IPluginStartup`.\
+  Make sure to register them as a singleton `services.AddSingleton<IEventListener, GameEventListener>();`.
 
 ### Server configuration
 
-Constantly copying the plugin dll to your server directory can be pretty annoying. Luckily we have a solution for that. In your Impostor server open the `config.json` and add the `PluginLoader` from the example below, replace the path with the build destination of your plugin.
+Constantly copying the plugin dll to your server directory can be pretty annoying.\
+Luckily we have a solution for that. In your Impostor server open the `config.json` and add the `PluginLoader` from the example below, replace the path with the build destination of your plugin.
 
 ```json
 {
@@ -312,7 +308,9 @@ Constantly copying the plugin dll to your server directory can be pretty annoyin
 
 ### Using other libraries
 
-Sometimes you need to use libraries that the original Impostor server does not provide. The dll files of these libraries must be placed in the `libraries` folder next to the server executable. You could also provide them by modifying the `PluginLoader.LibraryPaths` option in the `config.json`, similarly to the `PluginLoader.Paths` option.
+Sometimes you need to use libraries that the original Impostor server does not provide.\
+The dll files of these libraries must be placed in the `libraries` folder next to the server executable.\
+You could also provide them by modifying the `PluginLoader.LibraryPaths` option in the `config.json`, similarly to the `PluginLoader.Paths` option.
 
 ### Impostor versions
 
@@ -324,7 +322,8 @@ The prerelease `Impostor.Api` package `1.2.0-ci.54` belongs to build `54` on App
 
 ## 9. Missing/invalid data or want more functions?
 
-The `Impostor.Api` is currently in beta. There are a lot of things still missing and we would like to hear from you what you need to develop a plugin.
+The `Impostor.Api` is currently in beta.\
+There are a lot of things still missing and we would like to hear from you what you need to develop a plugin.
 
 Create an issue:
 
