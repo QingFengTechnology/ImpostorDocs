@@ -44,7 +44,7 @@ To configure the docker container, either use environment variables or mount con
 
 Docker Compose allows you to start a Docker container using a predefined configuration. This is an example configuration you can continue on:
 
-```
+```yml
 version: '3.4'
 
 services:
