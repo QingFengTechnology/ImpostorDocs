@@ -10,7 +10,8 @@ export const enSidebarConfig = defineConfig([
       { text: 'HTTP Server', link: 'HTTPServer' },
       { text: 'Building from source', link: 'BuildingFromSource' },
       { text: 'Writing a plugin', link: 'WritePlugin' },
-      { text: 'Frequently answered questions', link: 'FAQ' }
+      { text: 'Frequently answered questions', link: 'FAQ' },
+      { text: 'Troubleshooting', link: 'Troubleshooting' }
     ]
   }
 ]);
