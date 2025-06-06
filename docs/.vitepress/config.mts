@@ -1,27 +1,27 @@
 import { defineConfig } from 'vitepress'
+import { enLocaleConfig } from './i18n/index.ts'
 
 export default defineConfig({
-  lang: 'en-US',
   title: "Impostor",
-  description: "Impostor - An open source reimplementation of the Among Us Server",
+  titleTemplate: ":title - Impostor",
+  head: [['link', { rel: 'icon', type: 'image/png', href: 'https://avatars.githubusercontent.com/u/73118603?s=200&v=4' }]],
+  base: '/',
+  cleanUrls: true,
+  lastUpdated: true,
+  locales: {
+    root: enLocaleConfig as typeof enLocaleConfig & { label: 'English' }
+  },
   themeConfig: {
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/markdown-examples' }
-    ],
-
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
-
+    logo: 'https://avatars.githubusercontent.com/u/73118603?s=200&v=4',
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Impostor/Impostor' }
-    ]
+      { icon: 'github', link: 'https://github.com/Impostor/Impostor' },
+      { icon: 'discord', link: 'https://discord.gg/Mk3w6Tb' }
+    ],
+    footer: {
+      copyright: '© 2020 - 2025 Impostor'
+    },
+    search: {
+      provider: 'local'
+    }
   }
 })
