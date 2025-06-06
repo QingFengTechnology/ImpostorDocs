@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import footnote_plugin from "markdown-it-footnote";
 import { enLocaleConfig, zhLocaleConfig } from './i18n/index.js'
 
 export default defineConfig({
@@ -65,5 +66,10 @@ export default defineConfig({
       }
     },
     externalLinkIcon: true
+  },
+  markdown:{
+    config:(md)=>{
+      md.use(footnote_plugin)
+    }
   }
 })
