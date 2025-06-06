@@ -7,6 +7,7 @@ export const enSidebarConfig = defineConfig([
     items: [
       { text: 'Getting Started', link: 'GettingStarted' },
       { text: 'Server configuration', link: 'ServerConfiguration' },
+      { text: 'HTTP Server', link: 'HTTPServer' },
       { text: 'Building from source', link: 'BuildingFromSource' },
       { text: 'Writing a plugin', link: 'WritePlugin' },
       { text: 'Frequently answered questions', link: 'FAQ' }
