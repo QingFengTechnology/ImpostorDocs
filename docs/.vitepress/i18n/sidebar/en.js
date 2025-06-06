@@ -8,7 +8,8 @@ export const enSidebarConfig = defineConfig([
       { text: 'Getting Started', link: 'GettingStarted' },
       { text: 'Server configuration', link: 'ServerConfiguration' },
       { text: 'Building from source', link: 'BuildingFromSource' },
-      { text: 'Writing a plugin', link: 'WritePlugin'}
+      { text: 'Writing a plugin', link: 'WritePlugin' },
+      { text: 'Frequently answered questions', link: 'FAQ' }
     ]
   }
 ]);
