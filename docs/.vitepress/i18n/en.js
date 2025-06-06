@@ -8,7 +8,7 @@ export const enLocaleConfig = defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/Server/' }
+      { text: 'Guide', link: '/Server/GettingStarted', activeMatch: '/Server/' }
     ],
     sidebar: enSidebarConfig,
     footer: {

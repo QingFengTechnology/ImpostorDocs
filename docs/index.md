@@ -11,16 +11,17 @@ hero:
       text: Quick Start
       link: /Server/GettingStarted
     - theme: alt
-      text: Client configuration
-      link: /api-examples
+      text: Configure the client
+      link: https://impostor.github.io/Impostor/
 features:
   - icon: ⚡
     title: Full Replacement
+    details: All Among Us features are implemented.
   - icon: 🔌
     title: Plugin Support
+    details: Impostor boasts comprehensive plugin support.
   - icon: 🛡️
-    title: Server-sided Anticheat 
-  - icon: 🤝
-    title: Open Source
+    title: Server-sided Anticheat
+    details: Minimize the risk of your server being disrupted by cheaters.
 ---
 
