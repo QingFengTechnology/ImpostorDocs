@@ -1,0 +1,5 @@
+@import '@bprogress/core/css';
+
+:root {
+  --bprogress-color: #C60000;
+}

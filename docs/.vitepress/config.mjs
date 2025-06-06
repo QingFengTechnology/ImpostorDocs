@@ -2,6 +2,22 @@ import { defineConfig } from 'vitepress'
 import { enLocaleConfig } from './i18n/index.js'
 
 export default defineConfig({
+  vite: {
+    optimizeDeps: {
+      exclude: [
+        '@nolebase/vitepress-plugin-enhanced-readabilities/client',
+        'vitepress',
+        '@nolebase/ui'
+      ]
+    },
+    ssr: {
+      noExternal: [
+        '@nolebase/vitepress-plugin-highlight-targeted-heading',
+        '@nolebase/vitepress-plugin-enhanced-readabilities',
+        '@nolebase/ui'
+      ]
+    }
+  },
   title: "Impostor",
   titleTemplate: ":title - Impostor",
   head: [['link', { rel: 'icon', type: 'image/png', href: 'https://avatars.githubusercontent.com/u/73118603?s=200&v=4' }]],
