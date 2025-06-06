@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { enLocaleConfig } from './i18n/index.ts'
+import { enLocaleConfig } from './i18n/index.js'
 
 export default defineConfig({
   title: "Impostor",
@@ -9,7 +9,7 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   locales: {
-    root: enLocaleConfig as typeof enLocaleConfig & { label: 'English' }
+    root: enLocaleConfig
   },
   themeConfig: {
     logo: 'https://avatars.githubusercontent.com/u/73118603?s=200&v=4',
