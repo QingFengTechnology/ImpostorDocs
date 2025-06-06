@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { enSidebarConfig } from './sidebar/index.js'
+import { enSidebarConfig } from './sidebar/en.js'
 
 export const enLocaleConfig = defineConfig({
   label: 'English',
