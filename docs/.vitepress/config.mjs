@@ -22,7 +22,7 @@ export default defineConfig({
   title: "Impostor",
   titleTemplate: ":title - Impostor",
   head: [['link', { rel: 'icon', type: 'image/png', href: 'https://avatars.githubusercontent.com/u/73118603?s=200&v=4' }]],
-  base: '/',
+  base: '/ImpostorDocs/',
   cleanUrls: true,
   lastUpdated: true,
   locales: {
