@@ -70,7 +70,6 @@ To only allow connections to Impostor's HTTP servers via the reverse proxy, we r
 
 ```json
 {
- // merge this snippet into the rest of your configuration // [!code error]
  "HttpServer": {
    "ListenIp": "127.0.0.1"
  }
