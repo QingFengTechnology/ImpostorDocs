@@ -1,80 +1,80 @@
-# Troubleshooting
+# 故障排除
 
-If you're reading this, something went wrong.\
-Don't worry though, as this is the most thorough guide to help you!
+如果你看到这些信息，说明你遇到了些问题。\
+不过别担心，这是最详尽的指南来帮助你！
 
-## `./Impostor.Server: line 1: ELF: not found` (plus other errors)
+## `./Impostor.Server: line 1: ELF: not found` （以及其他错误）
 
-No idea where you got that system. But we clearly do **NOT** support it.
+不知道你从哪里弄来的这个系统。\
+但我们明确<mark>不支持</mark>它。
 
 ## `cannot execute binary file: Exec format error`
 
-Please check that you have downloaded the right version of Impostor, as we mantain two CPU architectures (x64 and ARM).\
-Unless you are running Impostor on a computer like the Raspberry Pi, you most likely want to use the x64 version.
+请确认您下载的是正确版本的 Impostor，因为我们维护了两种 CPU 架构（x64 和 ARM）。\
+除非您是在类似树莓派这样的电脑上运行 Impostor，否则您很可能需要使用 x64 版本。
 
 ## `./Impostor.Server: Permission denied`
 
-This is an error related to Linux file permissions.\
-Some files do not hold their executable bit (the permission that allows them to run) during a download.\
-You can solve this by doing: `chmod +x Impostor.Server`.
+这是一个与Linux文件权限相关的错误。\
+某些文件在下载过程中未能保留其可执行性（允许它们运行的权限）。\
+您可以通过执行以下命令解决此问题：
 
-## Disconnected with `Your client is too new, please update your Impostor to play`
+```bash
+chmod +x Impostor.Server
+```
 
-This happens when your game is too new for your copy of Impostor to support.
+## 无法连接：`Your client is too new, please update your Impostor to play`
 
-If you're using an Impostor release, check if there is a newer release available that supports your version.\
-If this doesn't exist, you can try the [latest build from CI](https://nightly.link/Impostor/Impostor/workflows/ci/master).
+当您的游戏版本过新，导致当前使用的 Impostor 版本无法支持时，会出现此情况。\
+若您使用的是 Impostor 正式发布版，请检查是否有支持您游戏版本的新版本发布。\
+若没有，您可以尝试[从 CI 获取最新构建](https://nightly.link/Impostor/Impostor/workflows/ci/master)。  
+即使该构建仍无法运行，您也可以查看 PR 中是否有旨在更新至下一版本的待合并请求，但请注意这些请求可能不稳定且包含恶意代码，因为它们尚未经过 Impostor 开发团队的审核。
 
-If even that build doesn't work, you can try looking through the Pull Requests to see if there is a pending pull request that aims to update it to the next version, but note these may be unstable and may contain malicious code, as they haven't been vetted by the Impostor development team yet.
+## 无法连接：`Please update your game to play on this server`
 
-## Disconnected with `Please update your game to play on this server`
+这种情况发生在您使用的Impostor版本相对于游戏版本过新时。\
+您可以从 [GitHub 发布页面](https://github.com/Impostor/Impostor/releases)下载旧版本。\
+不过，我们不会为旧版 Impostor 提供新 API 支持或错误修复，因此建议您升级游戏版本。
 
-This happens when you're using a version of Impostor that is too new for your game version.\
-You can download an older version from [the GitHub release page](https://github.com/Impostor/Impostor/releases).\
-We however don't support older versions of Impostor with new API's and bugfixes so we recommend to update your game instead.
+## 无法连接：`You are using an older version of the game`
 
-## Disconnected with `You are using an older version of the game`
+您当前使用的 Impostor 版本与所玩游戏版本不匹配。\
+游戏本身并未准确检测哪一方版本过旧，而是将问题归咎于用户。\
+较新版本（v1.5.0 及以上）会正确提示并发送准确信息。
 
-You are using a version of Impostor that is not designed for the version of the game you're playing.\
-The game does not really check who is outdated and blames it on the user.\
-Newer versions (v1.5.0+) do warn correctly and send the correct message.
+请查看主界面左上角显示的游戏版本号，然后下载对应版本的Impostor。\
+每个[发布页面的版本](https://github.com/Impostor/Impostor/releases)都标注了兼容的游戏版本号。\
+若您的游戏版本比最新发布版更新，请尝试 [CI 构建的最新版本是否可用](https://nightly.link/Impostor/Impostor/workflows/ci/master)。
 
-Look at which version of the game you're playing, which you can see in the top left corner of the main menu, then download an Impostor version for that game.\
-Every [release on the release page](https://github.com/Impostor/Impostor/releases) shows which version of the game it is compatible with.\
-If your game version is newer than the latest release, check if the [latest build from CI works](https://nightly.link/Impostor/Impostor/workflows/ci/master).
+## 无法连接：`You disconnected from the server. Reliable Packet 1 ...`
 
-## Disconnected with `You disconnected from the server. Reliable Packet 1 ...`
-
-Please double-check that you have followed the [Server Configuration](ServerConfiguration) correctly.
+请再次确认您已正确遵循[服务器配置](ServerConfiguration)指南。
 
 :::warning
 
-Your public ip does not start with `10`, `127` or `192`.
+你的公网IP地址不是以 `10`, `127` 或 `192` 开头。
 
 :::
 
-Also check if the port Impostor (ListenPort) is listening on is correctly port-forwarded for UDP (or TCP/UDP).
+同时，请检查 Impostor 所监听的端口是否正确地为 UDP（或TCP）进行了端口转发。
 
 ## `Could not load file or assembly...`
 
-Please check that you only have **working** plugins in the `plugins` folder.\
-This error can be caused by non-plugin files or plugins that are not working correctly.
+请检查您的 `plugins` 文件夹中是否只包含<mark>可正常运行</mark>的插件。\
+此错误可能是由非插件文件或无法正常工作的插件引起的。
 
-## Disconnected with `You disconnected from the server. If this happens often, check your network strength. This may also be a server issue`
+## 无法连接：`You disconnected from the server. If this happens often, check your network strength. This may also be a server issue.`
 
-Usually this means that Among Us couldn't connect to Impostor's HTTP server.
+通常这意味着 Among Us 无法连接到 Impostor 的 HTTP 服务器。\
+请在网页浏览器中打开您的服务器地址，它应该会显示一个小页面，确认 Impostor 是可用的。
 
-Open the address of your server in a web browser, it should show you a small page confirming that Impostor is available.
+## 我的问题尚未得到解答，我仍然遇到问题！
 
-## My question is not yet answered and I'm still having problems!
-
-That's unfortunate.\
-Join the [Impostor Discord](https://discord.gg/Mk3w6Tb), ask your question there and we'll try to help you out.\
-Note that we're not always available, so it may take some time to get an answer.
-
-To make answering your question easier, please add the following details:
-
-- Which version of Impostor are you using?
-- Which version or Among Us are you using?
-- Which operating system are you running Impostor on?
-- If you have console logs, attaching these will also help.
+这真是不幸。\
+加入 [Impostor Discord](https://discord.gg/Mk3w6Tb)，在那里提出您的问题，我们会尽力帮助您。\
+请注意，我们并非随时在线，因此可能需要一些时间才能得到答复。\
+为了更便于解答您的问题，请提供以下详细信息：
+- 您使用的是哪个版本的 Impostor？
+- 您使用的是哪个版本的 Among Us？
+- 您在哪个操作系统上运行 Impostor？
+- 如果有控制台日志，附上这些也会有所帮助。

@@ -1,29 +1,29 @@
-# Frequently Answered Questions
+# 常见疑难解答
 
-## What is this?
+## 这是什么?
 
-The Impostor project is a reverse engineered and open source server for the game Among Us.\
-The game itself is developed by [Innersloth](http://www.innersloth.com/) while this project is maintained by the community.\
-This project was built out of frustration for the lack of server availability in certain regions and the inability for the core developer, [AeonLucid](https://github.com/AeonLucid), to join a public game.\
-As of this time, it has not been officially endorsed by the studio.
+Impostor 项目是一款针对游戏 Among Us 进行逆向工程并开源的服务器。\
+该游戏本身由 [Innersloth](http://www.innersloth.com/) 开发，而此项目则由社区维护。\
+这一项目的初衷，源于部分地区服务器不可用以及核心开发者 [AeonLucid](https://github.com/AeonLucid) 无法加入公共游戏的困扰。\
+截至目前，该项目尚未获得工作室的官方认可。
 
-## Can this be used with the mobile version of the game?
+## 这个能在游戏的移动版本上使用吗？
 
-Yes, Impostor can be used with both the Android and iOS versions of the game.\
-You can add a custom server via a link, you can do this using the [site](https://impostor.github.io/Impostor)
+是的，Impostor 可以同时用于游戏的 Android 和 iOS 版本。\
+您可以通过链接添加自定义服务器，具体操作可参考[网站](https://impostor.github.io/Impostor)。
 
-## Can this be used with the console version of the game?
+## 这个能用于游戏的控制台版本吗？
 
-Sadly not, as these don't allow adding custom servers.
+遗憾的是，不行，因为这些版本不允许添加自定义服务器。
 
-## Can this be used with Among Us 3D/VR?
+## 这个能用于《Among Us 3D/VR》吗？
 
-No, it's an entirely different game with a completely different network stack.\
-So we'd need to develop another server completely from scratch.\
-We're currently not interested in doing this.
+不，这完全是另一款游戏，采用了截然不同的网络架构。\
+因此，我们需要从零开始再开发一个服务器。\
+目前我们对此并无兴趣。
 
-## How can I get started?
+## 如何开始？
 
-See [Getting Started](GettingStarted) for more information on running the server and [Client Setup](https://impostor.github.io/Impostor/) for helping your friends join in!
+请参阅[快速开始](GettingStarted)获取有关运行服务器的更多信息，并查看[客户端设置](https://impostor.github.io/Impostor/)帮助您的朋友加入游戏！  
 
-If you're having issues with the server software, check the [Troubleshooting page](Troubleshooting).
+如果您在服务器软件方面遇到问题，请查阅[故障排除](Troubleshooting)。

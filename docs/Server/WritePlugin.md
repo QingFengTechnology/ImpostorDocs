@@ -1,19 +1,20 @@
 # Writing a plugin
 
-Impostor has support for plugins. This document will help you to setup a development environment for writing a plugin.
+Impostor has support for plugins.\
+This document will help you to setup a development environment for writing a plugin.
 
 [[toc]]
 
-## 1. Install .NET SDK
+## Install .NET SDK
 
 Download and install the latest .NET SDK.
 
 https://dotnet.microsoft.com/download
 
-## 2. Create a C# project
+## Create a C# project
 
-The first step is creating a new C# project, it must be a **Class Library (.NET Standard)**.\
-The target framework can be any of those compatible with .NET 8, but we recommend sticking with **.NET 8.0**.
+The first step is creating a new C# project, it must be a <mark>Class Library (.NET Standard)</mark>.\
+The target framework can be any of those compatible with .NET 8, but we recommend sticking with <mark>.NET 8.0</mark>.
 
 For more information about compatibility, see [Microsoft Learn](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
 
@@ -29,13 +30,13 @@ Your `Project.csproj` should look something like this.
 </Project>
 ```
 
-## 3. Add the Impostor.Api library
+## Add the Impostor.Api library
 
 You only have to follow the instructions of one below. 
 
 ### Quick
 
-Install the `Impostor.Api` NuGet package.  
+Install the `Impostor.Api` NuGet package.\
 Make sure to get a prerelease if you are writing a plugin for a dev release of the server.
 
 ### Visual Studio
@@ -51,7 +52,7 @@ Make sure to get a prerelease if you are writing a plugin for a dev release of t
 1. Open your project folder in command prompt / bash.
 2. Run `dotnet add package Impostor.Api`.
 
-## 4. The plugin class
+## The plugin class
 
 Now the `Impostor.Api` is installed, you need to create a class for your plugin.\
 A plugin **must** contain exactly one.
@@ -123,7 +124,7 @@ namespace Impostor.Plugins.Example
 }
 ```
 
-## 5. Adding an event listener
+## Adding an event listener
 
 Currently you should have a plugin that loads and does nothing.\
 In order to get some actual functionality, you need to add an event listener.
@@ -195,7 +196,7 @@ namespace Impostor.Plugins.Example.Handlers
 }
 ```
 
-## 6. Registering the event listener
+## Registering the event listener
 
 The last step to get your plugin working is to register the event listener, so the server knows about it.\
 Go back to your plugin class and modify it as below.
@@ -250,7 +251,7 @@ namespace Impostor.Plugins.Example
 
 ```
 
-## 7. Build and run your plugin
+## Build and run your plugin
 
 Now your plugin is ready to be tested.
 
@@ -263,7 +264,7 @@ Now your plugin is ready to be tested.
 7. Open Among Us, create a game and send a chat message.\
   In the console you should see your plugin being loaded and the messages from the example.
 
-## 8. Extra
+## Extra
 
 Some extra information that might be useful for those developing plugins.
 
@@ -316,11 +317,11 @@ You could also provide them by modifying the `PluginLoader.LibraryPaths` option 
 
 It is important to use the correct versions when working with `Impostor.Api` prereleases and the `Impostor` dev builds to reduce the chances of mismatching assemblies. 
 
-**Example** 
+#### Example
 
 The prerelease `Impostor.Api` package `1.2.0-ci.54` belongs to build `54` on AppVeyor, which can be found here https://ci.appveyor.com/project/Impostor/Impostor/build/54. Notice the `54` on the end of the url.
 
-## 9. Missing/invalid data or want more functions?
+## Missing/invalid data or want more functions?
 
 The `Impostor.Api` is currently in beta.\
 There are a lot of things still missing and we would like to hear from you what you need to develop a plugin.

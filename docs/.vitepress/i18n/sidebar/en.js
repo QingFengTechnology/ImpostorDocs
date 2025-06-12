@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export const enSidebarConfig = defineConfig([
   {
-    text: 'Server-Side Operation Guide',
+    text: 'Server',
     base: '/Server/',
     items: [
       { text: 'Getting Started', link: 'GettingStarted' },

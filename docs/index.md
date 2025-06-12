@@ -23,5 +23,8 @@ features:
   - icon: 🛡️
     title: Server-sided Anticheat
     details: Minimize the risk of your server being disrupted by cheaters.
+  - icon: 🤝
+    title: Open Source
+    details: Impostor will always remain open-source.
 ---
 

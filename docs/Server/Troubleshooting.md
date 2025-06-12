@@ -5,7 +5,7 @@ Don't worry though, as this is the most thorough guide to help you!
 
 ## `./Impostor.Server: line 1: ELF: not found` (plus other errors)
 
-No idea where you got that system. But we clearly do **NOT** support it.
+No idea where you got that system. But we clearly do <mark>NOT</mark> support it.
 
 ## `cannot execute binary file: Exec format error`
 
@@ -16,7 +16,11 @@ Unless you are running Impostor on a computer like the Raspberry Pi, you most li
 
 This is an error related to Linux file permissions.\
 Some files do not hold their executable bit (the permission that allows them to run) during a download.\
-You can solve this by doing: `chmod +x Impostor.Server`.
+You can solve this by doing: 
+
+```bash
+chmod +x Impostor.Server
+```
 
 ## Disconnected with `Your client is too new, please update your Impostor to play`
 

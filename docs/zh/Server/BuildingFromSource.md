@@ -1,30 +1,30 @@
-# Building from source
+# 从源码构建
 
-The solution contains the Impostor server and its dependencies, like Hazel and the plugin API.\
-The server is built using [.NET 8](https://dotnet.microsoft.com/download/dotnet/8.0).
+该解决方案包含 Impostor 服务器及其依赖项，例如 Hazel 和插件 API。\
+服务器基于[.NET 8](https://dotnet.microsoft.com/download/dotnet/8.0)构建。
 
-## Cloning Impostor
+## 克隆 Impostor
 
-You need to clone Impostor using git:
+您需要使用 git 克隆 Impostor：
 
 ```bash
 git clone https://github.com/Impostor/Impostor.git
 ```
 
-## Building the server
+## 构建服务器
 
-### Dependencies
+### 依赖项
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [Rider](https://www.jetbrains.com/rider/) or [Visual Studio](https://visualstudio.microsoft.com/vs/) (Optional, only if you want the full IDE experience)
+- [Rider](https://www.jetbrains.com/rider/) 或 [Visual Studio](https://visualstudio.microsoft.com/vs/) （可选，仅当您希望获得完整的集成开发环境体验时）
 
-### Build using the CLI
+### 使用CLI构建
 
 ```bash
 cd src/Impostor.Server/
 dotnet build
-# Or if you want a single file, ready for production: (change linux-x64 to win-x64 if you use Windows)
+# 或者，如果您需要一个可直接用于生产的单一文件：（若您使用 Windows，请将 linux-x64 更改为 win-x64）
 dotnet publish -c Release -r linux-x64 -p:PublishSingleFile=true
 ```
 
-To setup the server, please look at [Getting Started](GettingStarted).
+要设置服务器，请参阅[快速开始](GettingStarted)。

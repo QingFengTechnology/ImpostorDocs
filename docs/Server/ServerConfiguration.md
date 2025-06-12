@@ -4,43 +4,44 @@
 
 ### Required Server Configuration
 
-| Key            | Default     | Description                                                                                                                                                                                                                                                                                                                                                                                            |
-| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **PublicIp**   | `127.0.0.1` | This needs to the public IPv4 address of the server which you give to others to connect. You can find your IPv4 address [on this website](http://whatismyip.host/). Unless you are only planning to use Impostor privately, on your local network, you should change this to your public ip. It is also possible to use hostnames instead of IPv4 addresses, which will be resolved to IPv4 addresses. |
-| **PublicPort** | `22023`     | The public port of the server which you give to others to connect. (**This is the external port you configure on your router when port forwarding.**) Usually `22023`.                                                                                                                                                                                                                                 |
-| **ListenIp**   | `0.0.0.0`   | The network interface to listen on. If you do not know what to put here, use `0.0.0.0`. Since 1.2.2 it is also possible to use hostnames instead of IPv4 addresses, these must resolve to a valid IPv4 address.                                                                                                                                                                                        |
-| **ListenPort** | `22023`     | The listen port of the server, usually `22023`. For port forwarding purposes: this is an UDP port                                                                                                                                                                                                                                                                                                                                                       |
+| Key            | Default     | Description                                                                                                                                                                                                                                                                                                                           |
+|----------------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **PublicIp**   | `127.0.0.1` | This needs to the public IPv4 address[^1] of the server which you give to others to connect.<br>Unless you are only planning to use Impostor privately, on your local network, you should change this to your public ip.<br>It is also possible to use hostnames instead of IPv4 addresses, which will be resolved to IPv4 addresses. |
+| **PublicPort** | `22023`     | The public port of the server which you give to others to connect.<br>Usually `22023`.<br><mark>This is the external port you configure on your router when port forwarding.</mark>                                                                                                                                                   |
+| **ListenIp**   | `0.0.0.0`   | The network interface to listen on. If you do not know what to put here, use `0.0.0.0`.<br>Since 1.2.2 it is also possible to use hostnames instead of IPv4 addresses, these must resolve to a valid IPv4 address.                                                                                                                    |
+| **ListenPort** | `22023`     | The listen port of the server, usually `22023`.<br>For port forwarding purposes: this is an UDP port.                                                                                                                                                                                                                                 |
+
 
 ### HTTP Server
 
 Impostor has an Http Server that is used by recent versions of Among Us to connect to.\
 See [the HTTP Server page](HTTPServer) for more details on how to set this up.
 
-| Key            | Default   | Description                                                                                                                                                                |
-|----------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Enabled**    | `true`    | Whether the http server should be enabled.                                                                                                                                 |
-| **ListenIp**   | `0.0.0.0` | The network interface to listen on. Use `127.0.0.1` if you use a reverse proxy or just run locally. Use `0.0.0.0` if you are directly exposing this server to the internet |
-| **ListenPort** | `22023`   | The listen port of this server. For port forwarding purposes, this is an TCP port.                                                                                         |
+| Key            | Default   | Description                                                                                                                                                                       |
+|----------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Enabled**    | `true`    | Whether the http server should be enabled.                                                                                                                                        |
+| **ListenIp**   | `0.0.0.0` | The network interface to listen on.<br>Use `127.0.0.1` if you use a reverse proxy or just run locally.<br>Use `0.0.0.0` if you are directly exposing this server to the internet. |
+| **ListenPort** | `22023`   | The listen port of this server.<br>For port forwarding purposes, this is an TCP port.                                                                                             |
 
 ### AntiCheat
 
 Impostor has an Anticheat that makes it possible to kick cheaters from games automatically.\
 Note that the anticheat is tuned on the vanilla version of the game, so client-side modifications could trigger the Anticheat if you're playing with them.
 
-| Key                           | Default   | Value                                                                                                                                                                                                               |
+| Key                           | Default   | Description                                                                                                                                                                                                         |
 |-------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Enabled**                   | `true`    | Whether the anticheat should be enabled.                                                                                                                                                                            |
-| **BanIpFromGame**             | `true`    | When anticheat is enabled and a player is caught hacking, they will be kicked from the server. If this value is set to `true`, the player will be banned instead and will not be able to rejoin that specific game. |
-| **AllowCheatingHosts**        | `"Never"` | Configure whether hosts are allowed to cheat. "Never" forbids it, "Always" allows it. "IfRequested" allows hosts to cheat if they connect with the DisableServerAuthorityFlag set.                                  |
-| **EnableGameFlowChecks**      | `true`    | Enable checks that check if certain actions are done in the appropriate order or at the appropriate moment in the game. This includes changing cosmetics while in game or murdering too fast.                       |
-| **EnableInvalidObjectChecks** | `true`    | Enables checks that check if network objects are spawned properly. Disabling this option also implies disabling EnableRoleChecks.                                                                                   |
-| **EnableMustBeHostChecks**    | `true`    | Enables checks that check if players are the host before they can do actions that require them to be host of the game. This includes starting the game and spawning objects.                                        |
+| **BanIpFromGame**             | `true`    | When anticheat is enabled and a player is caught hacking, they will be kicked from the server.<br>If this value is set to `true`, the player will be banned instead and will not be able to rejoin that specific game. |
+| **AllowCheatingHosts**        | `"Never"` | Configure whether hosts are allowed to cheat.<br>"Never" forbids it, "Always" allows it.<br>"IfRequested" allows hosts to cheat if they connect with the DisableServerAuthorityFlag set.                                  |
+| **EnableGameFlowChecks**      | `true`    | Enable checks that check if certain actions are done in the appropriate order or at the appropriate moment in the game.<br>This includes changing cosmetics while in game or murdering too fast.                       |
+| **EnableInvalidObjectChecks** | `true`    | Enables checks that check if network objects are spawned properly.<br>Disabling this option also implies disabling `EnableRoleChecks`.                                                                                   |
+| **EnableMustBeHostChecks**    | `true`    | Enables checks that check if players are the host before they can do actions that require them to be host of the game.<br>This includes starting the game and spawning objects.                                        |
 | **EnableColorLimitChecks**    | `true`    | Enables checks that checks if players request colors that are already in use.                                                                                                                                       |
 | **EnableNameLimitChecks**     | `true`    | Enables checks that checks if player names have a length that is possible to set using the user interface.                                                                                                          |
 | **EnableOwnershipChecks**     | `true`    | Enables checks that check if players are allowed to perform a certain action on themself or another player.                                                                                                         |
 | **EnableRoleChecks**          | `true`    | Enables checks that check if players have the correct role when performing certain role abilities like venting or murdering.                                                                                        |
-| **EnableTargetChecks**        | `true`    | Enables checks that check if certain packets to everyone that should only have been sent to certain players or vice versa. This includes sending votes or network objects.                                          |
-| **ForbidProtocolExtensions**  | `true`    | If disabled allows players to send network packets that go beyond the network packets sent by the vanilla game. This is necessary for most mods that need all players to install it.                                |
+| **EnableTargetChecks**        | `true`    | Enables checks that check if certain packets to everyone that should only have been sent to certain players or vice versa.<br>This includes sending votes or network objects.                                          |
+| **ForbidProtocolExtensions**  | `true`    | If disabled allows players to send network packets that go beyond the network packets sent by the vanilla game.<br>This is necessary for most mods that need all players to install it.                                |
 
 ### Compatibility
 
@@ -50,8 +51,8 @@ When contacting support, please mention which of these options are enabled.
 
 | Key                         | Default | Value                                                                                                                                                                                                                                                            |
 |-----------------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **AllowFutureGameVersions** | `false` | Warning: Setting this option to `true` is unsupported and may cause issues when large updates to Among Us are released, but can be useful when a small patch is released. Allows future versions of Among Us to join your server.                                |
-| **AllowHostAuthority**      | `false` | Certain Among Us mods allow disabling some server-authoritative features, which also changes some code paths in the client. These code paths have not undergone as much testing and contain bugs, which can't be fixed from the Impostor side. Use with caution. |
+| **AllowFutureGameVersions** | `false` | <mark>Setting this option to `true` is unsupported and may cause issues when large updates to Among Us are released, but can be useful when a small patch is released.</mark><br>Allows future versions of Among Us to join your server.                                |
+| **AllowHostAuthority**      | `false` | Certain Among Us mods allow disabling some server-authoritative features, which also changes some code paths in the client.<br>These code paths have not undergone as much testing and contain bugs, which can't be fixed from the Impostor side.<br>Use with caution. |
 | **AllowVersionMixing**      | `false` | Allows players using different game versions to play in one lobby that have not been marked by the Impostor developers as compatible.                                                                                                                            |
 
 ### Debug
@@ -71,32 +72,35 @@ You can change its default log level and you can add additional sinks.
 
 | Key              | Default       | Value                                                                                                                                                                                                                          |
 | ---------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **MinimumLevel** | `Information` | Minimum log level for a message to be printed. If a log entry is as severe or more severe than this level, it will be printed. From most severe to least severe: `Fatal`,`Error`, `Warning`, `Information`, `Debug`, `Verbose` |
+| **MinimumLevel** | `Information` | Minimum log level for a message to be printed.<br>If a log entry is as severe or more severe than this level, it will be printed.<br>From most severe to least severe: `Fatal`,`Error`, `Warning`, `Information`, `Debug`, `Verbose` |
 | **Using**        | `[]`          | List of additional Serilog Sinks assemblies to load.                                                                                                                                                                           |
-| **WriteTo**      | `[]`          | Additional logging sinks. See the Serilog documentation or the example in this section. Serilog                                                                                                                                |
+| **WriteTo**      | `[]`          | Additional logging sinks.<br>See the Serilog documentation or the example in this section.                                                                                                                              |
 
 For more information, check the [Serilog.Settings.Configuration](https://github.com/serilog/serilog-settings-configuration) documentation.
 
 For example, to add logging to a file, you should add the following snippet to your configuration:
 
 ```json
-"Serilog": {
-  "Using": [
-    "Serilog.Sinks.File"
-  ],
-  "WriteTo": [
-    {
-      "Name": "File",
-      "Args": {
-        "path": "logs/log.txt",
-        "rollingInterval": "Day"
+{
+  "Serilog": {
+    "Using": [
+      "Serilog.Sinks.File"
+    ],
+    "WriteTo": [
+      {
+        "Name": "File",
+        "Args": {
+          "path": "logs/log.txt",
+          "rollingInterval": "Day"
+        }
       }
-    }
-  ]
+    ]
+  }
 }
 ```
 
-Next to that, you also need to copy over Serilog.Sinks.File.dll from [NuGet](https://www.nuget.org/packages/Serilog.Sinks.File/). See the [Serilog.Sinks.File documentation](https://github.com/serilog/serilog-sinks-file#json-appsettingsjson-configuration) for a list of parameters that can be configured.
+Next to that, you also need to copy over Serilog.Sinks.File.dll from [NuGet](https://www.nuget.org/packages/Serilog.Sinks.File/).\
+See the [Serilog.Sinks.File documentation](https://github.com/serilog/serilog-sinks-file#json-appsettingsjson-configuration) for a list of parameters that can be configured.
 
 Other Serilog sinks are also supported, but are out of scope for this documentation.
 
@@ -188,3 +192,5 @@ If everything has started correctly, ensure the service is set to start on boot.
 ```bash
 sudo systemctl enable impostor.service
 ```
+
+[^1]: You can find your IPv4 address [on this website](http://whatismyip.host/).

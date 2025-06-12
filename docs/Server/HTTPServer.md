@@ -27,7 +27,7 @@ example.com # replace example.com with your domain name
 reverse_proxy :22023
 ```
 
-Now run `caddy run` in the folder with this Caddyfile and it should set up a server for you with a free SSL certificate.
+Now run `caddy run` in the folder with this Caddyfile and it should set up a server for you with a free SSL certificate.\
 If this works, you should set up [Caddy to run in the background](https://caddyserver.com/docs/running).
 
 ### Nginx

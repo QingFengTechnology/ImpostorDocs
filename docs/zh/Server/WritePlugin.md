@@ -1,25 +1,24 @@
-# Writing a plugin
+# 编写插件
 
-Impostor has support for plugins. This document will help you to setup a development environment for writing a plugin.
+Impostor支持插件功能。\
+本文将指导您搭建开发环境以便编写插件。
 
 [[toc]]
 
-## 1. Install .NET SDK
+## 安装 SDK
 
-Download and install the latest .NET SDK.
+下载并安装最新版本的 [.NET SDK](https://dotnet.microsoft.com/download)。
 
-https://dotnet.microsoft.com/download
+## 新建 C# 项目
 
-## 2. Create a C# project
+新建一个 C# 项目，该项目需为<mark>类库类型（目标框架选择 .NET Standard）</mark>。\
+目标框架版本可以是任何兼容 .NET 8 的 .NET Standard 版本，但我们建议始终使用 <mark>.NET 8.0</mark>。
 
-The first step is creating a new C# project, it must be a **Class Library (.NET Standard)**.\
-The target framework can be any of those compatible with .NET 8, but we recommend sticking with **.NET 8.0**.
+如需了解更多兼容性信息，请参阅 [Microsoft Learn](https://docs.microsoft.com/zh-cn/dotnet/standard/net-standard)。
 
-For more information about compatibility, see [Microsoft Learn](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
+项目创建完成后，您应该会看到 `Class.cs` 和 `Project.csproj` 文件。
 
-When the project has been created, you should have `Class.cs` and `Project.csproj` files.
-
-Your `Project.csproj` should look something like this.
+你的 `Project.csproj` 看起来应该是这样的：
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -29,34 +28,34 @@ Your `Project.csproj` should look something like this.
 </Project>
 ```
 
-## 3. Add the Impostor.Api library
+## 添加 Impostor.Api 库
 
-You only have to follow the instructions of one below. 
+您只需按照以下一种方式添加。
 
-### Quick
+### 快速添加
 
-Install the `Impostor.Api` NuGet package.  
-Make sure to get a prerelease if you are writing a plugin for a dev release of the server.
+安装 `Impostor.Api` NuGet 包。<br>
+如果正在为服务器的开发版本编写插件，请确保获取预发布版本。
 
 ### Visual Studio
 
-1. Right click your project.
-2. Click `Manage NuGet Packages`.
-3. Click `Browse`.
-4. Search for `Impostor.Api`.
-5. Click the `Impostor.Api` result and press install on the right side.
+1. 右键你的项目。
+2. 点击 `管理 Nuget 包` 。
+3. 点击 `选择` 。
+4. 搜索 `Impostor.Api` 。
+5. 选中 `Impostor.Api` ，然后点击右侧安装按钮。
 
 ### Dotnet CLI
 
-1. Open your project folder in command prompt / bash.
-2. Run `dotnet add package Impostor.Api`.
+1. 在 cmd / bash 中打开您的项目文件夹。
+2. 运行 `dotnet add package Impostor.Api` .
 
-## 4. The plugin class
+## 插件类
 
-Now the `Impostor.Api` is installed, you need to create a class for your plugin.\
-A plugin **must** contain exactly one.
+现在 `Impostor.Api` 已安装，您需要为您的插件创建一个类。\
+一个插件<mark>必须且只有</mark>一个类。
 
-See the code below for an example.
+请参考以下代码示例。
 
 ```csharp
 using System.Threading.Tasks;
@@ -67,32 +66,32 @@ using Microsoft.Extensions.Logging;
 namespace Impostor.Plugins.Example
 {
     /// <summary>
-    ///     The metadata information of your plugin, this is required.
+    ///     您的插件元数据信息，这是必需的。
     /// </summary>
     [ImpostorPlugin(
         package: "gg.impostor.example",
         name: "Example",
         author: "AeonLucid",
         version: "1.0.0")]
-    public class ExamplePlugin : PluginBase // This is also required ": PluginBase".
+    public class ExamplePlugin : PluginBase // 这也是必需的“：PluginBase”。
     {
         /// <summary>
-        ///     A logger that works seamlessly with the server.
+        ///     与服务器无缝协作的日志记录器。
         /// </summary>
         private readonly ILogger<ExamplePlugin> _logger;
 
         /// <summary>
-        ///     The constructor of the plugin. There are a few parameters you can add here and they
-        ///     will be injected automatically by the server, two examples are used here.
+        ///     插件的构造函数。
+        ///     您可以在此处添加一些参数，服务器会自动注入这些参数，这里使用了两个示例。
         ///
-        ///     They are not necessary but very recommended.
+        ///     这些不是必须的，但我们推荐使用。
         /// </summary>
         /// <param name="logger">
-        ///     A logger to write messages in the console.
+        ///     一个用于在控制台写入消息的记录器。
         /// </param>
         /// <param name="eventManager">
-        ///     An event manager to register event listeners.
-        ///     Useful if you want your plugin to interact with the game.
+        ///     事件管理器用于注册事件监听器。
+        ///     如果您希望插件与游戏互动，这将非常有用。
         /// </param>
         public ExamplePlugin(ILogger<ExamplePlugin> logger, IEventManager eventManager)
         {
@@ -100,7 +99,7 @@ namespace Impostor.Plugins.Example
         }
 
         /// <summary>
-        ///     This is called when your plugin is enabled by the server.
+        ///     当服务器启用您的插件时，将调用此方法。
         /// </summary>
         /// <returns></returns>
         public override ValueTask EnableAsync()
@@ -110,8 +109,8 @@ namespace Impostor.Plugins.Example
         }
 
         /// <summary>
-        ///     This is called when your plugin is disabled by the server.
-        ///     Most likely because it is shutting down, this is the place to clean up any managed resources.
+        ///     当您的插件被服务器禁用时会调用此方法。
+        ///     通常是因为服务器正在关闭，这是清理任何托管资源的地方。
         /// </summary>
         /// <returns></returns>
         public override ValueTask DisableAsync()
@@ -123,13 +122,13 @@ namespace Impostor.Plugins.Example
 }
 ```
 
-## 5. Adding an event listener
+## 添加事件监听器
 
-Currently you should have a plugin that loads and does nothing.\
-In order to get some actual functionality, you need to add an event listener.
+目前，您应该有一个加载后无任何操作的插件。\
+要实现一些实际功能，您需要添加一个事件监听器。
 
-Create a new class called `GameEventListener`.\
-Example code:
+创建一个名为`GameEventListener`的新类。\
+示例代码：
 
 ```csharp
 using Impostor.Api.Events;
@@ -139,10 +138,10 @@ using Microsoft.Extensions.Logging;
 namespace Impostor.Plugins.Example.Handlers
 {
     /// <summary>
-    ///     A class that listens for two events.
-    ///     It may be more but this is just an example.
+    ///     一个监听两个事件的类。  
+    ///     可能不止两个，但这只是一个示例。
     ///
-    ///     Make sure your class implements <see cref="IEventListener"/>.
+    ///     确保您的类实现了 <see cref="IEventListener"/>。
     /// </summary>
     public class GameEventListener : IEventListener
     {
@@ -154,17 +153,17 @@ namespace Impostor.Plugins.Example.Handlers
         }
 
         /// <summary>
-        ///     An example event listener.
+        ///     一个示例监听器。
         /// </summary>
         /// <param name="e">
-        ///     The event you want to listen for.
+        ///     您想要监听的事件。
         /// </param>
         [EventListener]
         public void OnGameStarted(IGameStartedEvent e)
         {
             _logger.LogInformation($"Game is starting.");
 
-            // This prints out for all players if they are impostor or crewmate.
+            // 这将为所有玩家显示出他们是内鬼还是船员。
             foreach (var player in e.Game.Players)
             {
                 var info = player.Character.PlayerInfo;
@@ -195,10 +194,10 @@ namespace Impostor.Plugins.Example.Handlers
 }
 ```
 
-## 6. Registering the event listener
+## 注册事件监听器
 
-The last step to get your plugin working is to register the event listener, so the server knows about it.\
-Go back to your plugin class and modify it as below.
+让插件正常工作的最后一步是注册事件监听器，这样服务器才能识别它。\
+回到您的插件类并按照以下方式修改它。
 
 ```csharp
 using System;
@@ -218,22 +217,22 @@ namespace Impostor.Plugins.Example
     public class ExamplePlugin : PluginBase
     {
         private readonly ILogger<ExamplePlugin> _logger;
-        // Add the line below!
+        // 添加以下行
         private readonly IEventManager _eventManager;
-        // Add the line below!
+        // 添加以下行
         private IDisposable _unregister;
 
         public ExamplePlugin(ILogger<ExamplePlugin> logger, IEventManager eventManager)
         {
             _logger = logger;
-            // Add the line below!
+            // 添加以下行
             _eventManager = eventManager;
         }
 
         public override ValueTask EnableAsync()
         {
             _logger.LogInformation("Example is being enabled.");
-            // Add the line below!
+            // 添加以下行
             _unregister = _eventManager.RegisterListener(new GameEventListener(_logger));
             return default;
         }
@@ -241,7 +240,7 @@ namespace Impostor.Plugins.Example
         public override ValueTask DisableAsync()
         {
             _logger.LogInformation("Example is being disabled.");
-            // Add the line below!
+            // 添加以下行
             _unregister.Dispose();
             return default;
         }
@@ -250,44 +249,47 @@ namespace Impostor.Plugins.Example
 
 ```
 
-## 7. Build and run your plugin
+## 构建并运行您的插件
 
-Now your plugin is ready to be tested.
+现在您的插件已准备好进行测试。
 
-1. Right click your project and press `Build`.
-2. Right click your project and press `Open Folder in File Explorer`.
-3. Go to `bin/Debug/net8.0/`.
-4. In this directory, you should find your plugin named `Project.dll`.
-5. Copy the `Project.dll` to the `plugins` directory in your Impostor server directory.
-6. (Re)start your Impostor server.
-7. Open Among Us, create a game and send a chat message.\
-  In the console you should see your plugin being loaded and the messages from the example.
+1. 右键点击您的项目并按下 `构建` 。
+2. 右键点击您的项目并选择 `在文件资源管理器中打开文件夹` 。
+3. 进入 `bin/Debug/net8.0/` 目录。
+4. 在此目录下，您应能找到名为 `Project.dll` 的插件文件。
+5. 将 `Project.dll` 复制到您的 Impostor 服务器目录中的 `plugins` 文件夹内。
+6. （重新）启动您的 Impostor 服务器。
+7. 打开 Among Us，创建游戏并发送一条聊天消息。
 
-## 8. Extra
+在控制台中，您应能看到插件被加载及示例中的消息显示。
 
-Some extra information that might be useful for those developing plugins.
+## 额外信息
 
-### Event listeners
+这些额外信息可能对开发插件的人员有所帮助。
 
-- You can have multiple event listener on the same event.
-- An event listener can be given a priority `[EventListener(EventPriority.Normal)]` and is called in order.
-- It is not recommended to block for a long time inside `EventListener` because the events are called from inside the packet handlers. Blocking too long causes the client to time out.\
-  You should create a new `Task` for operations that will take a lot of time. 
+### 事件监听器
 
-### Dependency injection
+- 您可以在同一事件上设置多个事件监听器。
+- 可以为事件监听器指定优先级 `[EventListener(EventPriority.Normal)]` ，并按顺序调用。
+- 不建议在 `EventListener` 内部长时间阻塞，因为事件是从数据包处理程序内部调用的。阻塞时间过长会导致客户端超时。\
+  对于耗时较长的操作，您应该创建一个新的 `Task` 。
 
-- The main plugin class is constructed by the `IServiceProvider` of the server and can inject everything the server uses. A few examples are:
-  - `ILogger<T>`
-  - `IEventManager`
-  - `IClientManager`
-  - `IOptions<ServerConfig>`
-- You can add your own classes and `EventListener` implementation to the `IServiceProvider` by creating a new class and implementing `IPluginStartup`.\
-  Make sure to register them as a singleton `services.AddSingleton<IEventListener, GameEventListener>();`.
+### 依赖注入
 
-### Server configuration
+- 主插件类由服务器的 `IServiceProvider` 构建，能够注入服务器使用的所有内容。\
+  例如：  
+  - `ILogger<T>`  
+  - `IEventManager`  
+  - `IClientManager`  
+  - `IOptions<ServerConfig>`  
+- 您可以通过创建新类并实现 `IPluginStartup`，将自己的类和 `EventListener` 实现添加到 `IServiceProvider` 中。\
+  确保将它们注册为单例 `services.AddSingleton<IEventListener, GameEventListener>();`。
 
-Constantly copying the plugin dll to your server directory can be pretty annoying.\
-Luckily we have a solution for that. In your Impostor server open the `config.json` and add the `PluginLoader` from the example below, replace the path with the build destination of your plugin.
+### 服务器配置
+
+不断将插件 dll 复制到服务器目录可能会相当烦人。\
+幸运的是，我们有一个解决方案。\
+在你的 Impostor 服务器中打开 `config.json` ，并添加如下示例中的 `PluginLoader` ，将路径替换为你插件的构建目标路径。
 
 ```json
 {
@@ -306,28 +308,29 @@ Luckily we have a solution for that. In your Impostor server open the `config.js
 }
 ```
 
-### Using other libraries
+### 使用其他库
 
-Sometimes you need to use libraries that the original Impostor server does not provide.\
-The dll files of these libraries must be placed in the `libraries` folder next to the server executable.\
-You could also provide them by modifying the `PluginLoader.LibraryPaths` option in the `config.json`, similarly to the `PluginLoader.Paths` option.
+有时，您需要使用原版 Impostor 服务器未提供的库。\
+这些库的 dll 文件必须放置在服务器可执行文件旁边的 `libraries` 文件夹中。\
+您也可以通过修改 `config.json` 中的 `PluginLoader.LibraryPaths` 选项来提供这些库，类似于 `PluginLoader.Paths` 选项。
 
-### Impostor versions
+### Impostor 版本
 
-It is important to use the correct versions when working with `Impostor.Api` prereleases and the `Impostor` dev builds to reduce the chances of mismatching assemblies. 
+在使用 `Impostor.Api` 预发布版和 `Impostor` 开发构建时，务必选用正确的版本，以降低程序集不匹配的风险。
 
-**Example** 
+#### 示例
 
-The prerelease `Impostor.Api` package `1.2.0-ci.54` belongs to build `54` on AppVeyor, which can be found here https://ci.appveyor.com/project/Impostor/Impostor/build/54. Notice the `54` on the end of the url.
+预发布的 `Impostor.Api` 包 `1.2.0-ci.54` 属于 AppVeyor 上的构建 `54`，可在此处[找到](https://ci.appveyor.com/project/Impostor/Impostor/build/54)。\
+请注意网址末尾的 `54`。
 
-## 9. Missing/invalid data or want more functions?
+## 数据缺失 / 无效或需要更多功能？
 
-The `Impostor.Api` is currently in beta.\
-There are a lot of things still missing and we would like to hear from you what you need to develop a plugin.
+`Impostor.Api`目前处于测试阶段。\
+还有许多功能尚未完善，我们希望能听取您的意见，了解您开发插件所需的内容。
 
-Create an issue:
+创建一个议题:
 
-- [Suggest a function](https://github.com/Impostor/Impostor/issues/new?template=3--api-suggestion.md)
-- [Data is invalid](https://github.com/Impostor/Impostor/issues/new?template=4--api-invalid.md)
-- [Data is unavailable](https://github.com/Impostor/Impostor/issues/new?template=5--api-missing.md)
-- [Other](https://github.com/Impostor/Impostor/issues/new?template=6--api-other.md)
+- [请求一个函数](https://github.com/Impostor/Impostor/issues/new?template=3--api-suggestion.md)
+- [数据无效](https://github.com/Impostor/Impostor/issues/new?template=4--api-invalid.md)
+- [数据无法使用](https://github.com/Impostor/Impostor/issues/new?template=5--api-missing.md)
+- [其他](https://github.com/Impostor/Impostor/issues/new?template=6--api-other.md)

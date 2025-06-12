@@ -32,7 +32,7 @@ export default defineConfig({
   themeConfig: {
     logo: 'https://avatars.githubusercontent.com/u/73118603?s=200&v=4',
     outline: {
-      level: [2, 4]
+      level: [2, 3]
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/Impostor/Impostor' },

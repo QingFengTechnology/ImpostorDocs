@@ -11,6 +11,10 @@ export const zhLocaleConfig = defineConfig({
       { text: '教程', link: '/zh/Server/GettingStarted', activeMatch: '/Server/' }
     ],
     sidebar: zhSidebarConfig,
+    outline: {
+      label: '页面导航',
+      level: [2, 3]
+    },
     footer: {
       message: '此语言部分内容由AI翻译,但已经过校对。',
       copyright: '© 2023 - 2025 By QingFeng'
@@ -18,6 +22,9 @@ export const zhLocaleConfig = defineConfig({
     editLink: {
       pattern: 'https://github.com/QingFengTechnology/ImpostorDocs/blob/main/:path',
       text: '在GitHub上查看此页'
+    },
+    lastUpdated: {
+      text: '上次更新于'
     },
     docFooter: {
       prev: '上一页',

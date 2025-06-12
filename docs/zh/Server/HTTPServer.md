@@ -1,59 +1,61 @@
-# HTTP Server
+# HTTP 服务器
 
-Since Impostor 1.9.0 a HTTP service is included for matchmaking, which is required for clients to connect to the Impostor server.
+Impostor 1.9.0 起新增了玩家匹配专用的 HTTP 服务，客户端需通过此服务连接服务器。
 
-Starting from Among Us 16.0.5, you need to set up HTTPS for players to connect to your server.\
-Unfortunately Impostor doesn't handle SSL certificates, so you need to set up a reverse proxy.
+然而，自 Among Us 16.0.5 版本开始，为了让玩家能连接到您的服务器，您需要配置 HTTPS。\
+但很抱歉，Impostor 并不处理 SSL 证书，因此您需设置一个反向代理来实现这一需求。
 
-## Use a reverse proxy
+## 使用反向代理
 
-A reverse proxy allows you to forward HTTP requests from users to multiple services.\
-If you already have one, you should configure it to add Impostor. 
+反向代理使您能够将用户的 HTTP 请求转发至多个服务。\
+若您已拥有此类代理，应将其配置以添加 Impostor。
 
-If you have never set up a reverse proxy before, we recommend you to set up [Caddy](https://caddyserver.com/).\
-It is easy to set up and comes with support for requesting SSL certificates out of the box.
+若您未曾配置过反向代理，我们建议您选用[Caddy](https://caddyserver.com)。\
+其设置简便，且默认支持申请SSL证书。
 
-To prevent people from connecting directly to Impostor, we recommend changing the `ListenIp` in the `HttpServer` section to `127.0.0.1`.\
-This makes sure people can't connect to your HTTP server other than via your reverse proxy.\
-Keep the `ListenIp` in the `Server` section at `0.0.0.0` though, running the normal game traffic through a proxy is not supported.
+为防止用户直接连接到 Impostor，我们建议将 `HttpServer` 部分中的 `ListenIp` 更改为 `127.0.0.1` 。\
+这样可以确保除了通过您的反向代理之外，其他人无法连接到您的 HTTP 服务器。\
+不过，请保持 `Server` 部分中的 `ListenIp` 为 `0.0.0.0` ，因为不支持通过代理传输正常的游戏流量。
 
 ### Caddy
 
-To install Caddy, follow the [official installation guide](https://caddyserver.com/docs/install). Then use the following lines as your `Caddyfile` configuration file:
+要安装Caddy，请遵循[官方安装指南](https://caddyserver.com/docs/install)。\
+然后，将以下内容用作您的`Caddyfile`配置文件：
 
 ```
-example.com # replace example.com with your domain name
+example.com # 替换为您的域名
 
 reverse_proxy :22023
 ```
 
-Now run `caddy run` in the folder with this Caddyfile and it should set up a server for you with a free SSL certificate.
-If this works, you should set up [Caddy to run in the background](https://caddyserver.com/docs/running).
+现在，在此包含Caddyfile的文件夹中运行`caddy run`命令，它将为您搭建一个带有免费SSL证书的服务器。\
+若运行成功，您应按照[后台运行Caddy的指南](https://caddyserver.com/docs/running)进行配置。
 
 ### Nginx
 
-Nginx is an alternative to Caddy that is a bit harder to set up. If you already use Nginx, you can use our snippet to add Impostor:
+Nginx 是 Caddy 的一个替代方案，配置起来稍显复杂。\
+如果您已经在使用 Nginx，可以参考我们的配置片段来集成 Impostor：
 
-:::details Nginx configuration
+:::details Nginx 配置
 
 ```nginx
 server {
     listen 443 ssl http2;
-    server_name example.com; # replace example.com with your domain name
+    server_name example.com; # 替换为您的域名
 
-    # Assuming you're using Certbot, replace example.com with your domain name
+    # 假设您正在使用 Certbot，请将 example.com 替换为您的域名
     ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
     ssl_trusted_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
 
     location / {
-        proxy_pass http://localhost:22023; # Change the port to your HttpServer's ListenPort
+        proxy_pass http://localhost:22023; # 将端口更改为您的 HTTP 服务器的（TCP）监听端口
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
 
-# Redirect all traffic to HTTPS
+# 将所有流量重定向至 HTTPS
 server {
     listen 80 default_server;
     location / {
@@ -64,23 +66,22 @@ server {
 
 :::
 
-## Stop exposing Impostor's HTTP server to the internet directly
+## 不要直接将 Impostor 的 HTTP 服务器暴露在互联网上
 
-To only allow connections to Impostor's HTTP servers via the reverse proxy, we recommend to set the ListenIp of the HTTP server to `127.0.0.1`:
+为确保仅通过反向代理连接到 Impostor 的 HTTP 服务器，建议将 HTTP 服务器的 `ListenIp` 设置为 `127.0.0.1` ：
 
 ```json
 {
- // merge this snippet into the rest of your configuration // [!code error]
  "HttpServer": {
    "ListenIp": "127.0.0.1"
  }
 }
 ```
 
-Or if you're configuring Impostor with environment variables:
+如果您正在使用环境变量配置 Impostor：
 
 ```
 IMPOSTOR_HttpServer__ListenIp=127.0.0.1
 ```
 
-For more information on server configuration, see [Server Configuration](ServerConfiguration).
+有关服务器配置的更多信息，请参阅[服务器配置](ServerConfiguration)。

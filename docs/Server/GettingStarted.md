@@ -5,7 +5,7 @@ This section applies to both the normal installation as well as the Docker (Comp
 To connect to the server, you need to configure and install a region file on [this website](https://impostor.github.io/Impostor/).
 
 Among Us connects to the server using two network services: the (TCP) HTTP service points Among Us to the UDP service, then the UDP service hosts the actual game traffic.\
-Because of this, Impostor uses port 22023 using **both** the TCP and UDP protocols.
+Because of this, Impostor uses port 22023 using <mark>both</mark> the TCP and UDP protocols.
 
 To connect to your Among Us version from another PC, you need to set up a HTTP reverse proxy to support HTTPS.\
 If you're just running a version of Impostor for testing Setup instructions for this are in the [HTTP Server documentation](HTTPServer).
@@ -29,7 +29,7 @@ As port forwarding changes per host or router configuration, port forwarding is 
   You need to at least change `PublicIp` to the address people will connect to your server to.
 5. Run `Impostor.Server` (Linux/macOS) or `Impostor.Server.exe` (Windows).
 6. Set up a reverse proxy to support HTTPS, so you can connect to your server from another device.\
-  See [reverse proxy configuration](HTTPServer.md)
+  See [reverse proxy configuration](HTTPServer)
 7. (OPTIONAL - Linux) Configure a systemd definition file and enable the service to start on boot, see [systemd configuration](ServerConfiguration#systemd)
 
 ## Using Docker
