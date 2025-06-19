@@ -1,4 +1,6 @@
 ---
+title: Impostor
+titleTemplate: :title - Among Us 服务器的开源重实现
 layout: home
 hero:
   name: Impostor

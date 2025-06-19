@@ -1,4 +1,6 @@
 ---
+title: Impostor
+titleTemplate: :title - An open source reimplementation of the Among Us Server
 layout: home
 hero:
   name: Impostor
