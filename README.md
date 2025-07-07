@@ -4,5 +4,4 @@
 > I'm not very good at English, so I'll write this Readme in Chinese. Sorry.
 
 这是一个开源的 [Among Us 服务器重实现(Impostor)](https://github.com/Impostor/Impostor)的第三方文档。\
-我使用 VitePress 来构建这个站点，并在基础上使用插件和 CSS 扩展了许多有意思的功能与优化。\
-这个站点还可以发布在 Github Pages 上，因此我正准备和 Impostor 开发者（[AeonLucid](https://github.com/AeonLucid) 或 [miniduikboot](https://github.com/miniduikboot)）协商将此仓库转到 [Impostor 组织](https://github.com/Impostor/Impostor)下并持续进行维护。
+我使用 VitePress 来构建这个站点，并在基础上使用插件和 CSS 扩展了许多有意思的功能与优化。
