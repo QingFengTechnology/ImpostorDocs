@@ -12,8 +12,7 @@ export const enLocaleConfig = defineConfig({
     ],
     sidebar: enSidebarConfig,
     footer: {
-      message: 'Some parts of this language are translated using AI.',
-      copyright: '© 2023 - 2025 By QingFeng'
+      message: 'Some parts of this language are translated using AI.'
     },
     editLink: {
       pattern: 'https://github.com/QingFengTechnology/ImpostorDocs/blob/main/:path',

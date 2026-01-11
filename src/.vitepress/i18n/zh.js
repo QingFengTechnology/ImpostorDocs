@@ -16,8 +16,7 @@ export const zhLocaleConfig = defineConfig({
       level: [2, 3]
     },
     footer: {
-      message: '此语言部分内容由AI翻译,但已经过校对。',
-      copyright: '© 2023 - 2025 By QingFeng'
+      message: '此语言部分内容由AI翻译,但已经过校对。'
     },
     editLink: {
       pattern: 'https://github.com/QingFengTechnology/ImpostorDocs/blob/main/:path',
