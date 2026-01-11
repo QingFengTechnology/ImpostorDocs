@@ -3,6 +3,10 @@ name: Deploy VitePress to ghPages
 on:
   push:
     branches: [main]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'src/**'
   workflow_dispatch:
 
 permissions:
