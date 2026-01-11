@@ -39,7 +39,7 @@ export default defineConfig({
       { icon: 'discord', link: 'https://discord.gg/Mk3w6Tb' }
     ],
     footer: {
-      copyright: '© 2023 - 2025 By QingFeng'
+      copyright: '© 2020 - 2026 By <a href="https://github.com/Impostor" target="_blank">Impostor</a><br>The site is published by <a href="https://qingfengawa.top" target="_blank">QingFeng</a>.'
     },
     search: {
       provider: 'local',
